@@ -16,29 +16,8 @@ class PostController extends Controller
     public function index()
     {   
         $posts = Post::get();
-        return view('admin.posts.index', compact('posts'));
+        return view('admin.admin-posts.index', compact('posts'));
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    // public function store(Request $request)
-    // {   
-    //     $request->validate([
-    //         'name' => 'required|unique:posts,name',
-    //         'description' => 'required',
-    //     ]); 
-        
-    //     $post = new Post;
-    //     $post->name = $request->name;
-    //     $post->description = $request->description;
-
-    //     $post->save();
-    //     return $post;
-    // }
 
     /**
      * Display the specified resource.
@@ -49,30 +28,9 @@ class PostController extends Controller
     public function show($id) 
     {
         $post = Post::findOrFail($id);
-        return view('admin.posts.post-detail', compact('post'));
+        return view('admin.admin-posts.posts-detail', compact('post'));
 
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    // public function update(Request $request, $id) 
-    // {   
-    //     $request->validate([
-    //         'name' => 'required|unique:posts,name',
-    //         'description' => 'required',
-    //     ]);   
-    //     $post = Post::findOrFail($id);
-    //     $post->name = $request->name;
-    //     $post->description = $request->description;
-    
-    //     $post->update();
-    //     return $post;
-    // }
 
      /**
      * Remove the specified resource from storage.
@@ -85,7 +43,8 @@ class PostController extends Controller
         $post = Post::findOrFail($id);
         $post->delete();
 
-        return redirect('admin/posts')->with('success', 'Post deleted successfully!');
+        $posts = Post::all();
+        return view('admin.admin-posts.index',compact('posts'));
     }
 
      /**
@@ -94,16 +53,16 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    // public function showPost(Request $request)
-    // {   
-    //     $posts = Post::query();
-    //     if($request->keyword) {
-    //         return $posts->where('name', 'like', "%" . $request->keyword . "%")
-    //        ->paginate(5);
-    //     } else {
-    //         return $posts->all()->get()->paginate(5);
-    //     }
+    public function showPost(Request $request)
+    {   
+        $posts = Post::query();
+        if($request->keyword) {
+            return $posts->where('name', 'like', "%" . $request->keyword . "%")
+           ->paginate(5);
+        } else {
+            return $posts->all()->get()->paginate(5);
+        }
 
-    // }
+    }
 
 }

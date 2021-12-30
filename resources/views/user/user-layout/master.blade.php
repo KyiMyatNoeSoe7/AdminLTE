@@ -49,10 +49,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
-            {{-- <a href="{{ route('company.dashboard') }}" class="brand-link">
-                <img src="{{ asset('images/logo.png') }}" alt="Job Logo" class="brand-image img-rounded elevation-3">
-                <span class="brand-text font-weight-light">Job Portal System</span>
-            </a> --}}
+            <a href="{{ route('user.dashboard') }}" class="brand-link">
+                {{-- <img src="{{ asset('images/logo.png') }}" alt="Job Logo" class="brand-image img-rounded elevation-3">
+                <span class="brand-text font-weight-light">Job Portal System</span> --}}
+            </a>
 
             <!-- Sidebar -->
             <div class="sidebar">
@@ -67,13 +67,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         @endif --}}
                     </div>
                     <div class="info">
-                        {{-- @auth
+                        @auth
                             <a href="{{ route(
     'user.edit',
     Auth::user()->first()->id,
 ) }}"
                                 class="d-block">{{ Auth::user()->name }}</a>
-                        @endauth --}}
+                        @endauth
                     </div>
                 </div>
                 <!-- Sidebar Menu -->
@@ -92,7 +92,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="" class="nav-link">
+                            <a href="{{ route('user.user-dashboard') }}" class="nav-link">
                                 <i class="nav-icon fas fa-building"></i>
                                 <p>
                                     Dashboard

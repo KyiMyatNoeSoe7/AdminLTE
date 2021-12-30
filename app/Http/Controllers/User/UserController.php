@@ -1,15 +1,21 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
+
 use App\Models\User;
 use Illuminate\Http\Request;
-
-
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Controller;
 class UserController extends Controller
 {   
+    public function index()
+    {    
+        $user = User::findOrFail(Auth::user()->id);
+        return view('user.user-dashboard', compact('user'));
+    }  
     public function edit($id)
     {   
-        $user = $this->companyService->getCompanyId($id);
+        $user = User::findOrFail($id);
         return view('user.edit', compact('user'));
     }
 
@@ -25,19 +31,6 @@ class UserController extends Controller
         $user = User::find($id);
         $user->update($request->all());
 
-        return redirect('admin/users')->with('success', 'User updated successfully!');
+        return redirect('user/dashboard')->with('success', 'User updated successfully!');
     }
-    
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(User $user)
-    {
-        $user->delete();
-        return redirect('admin/users')->with('success', 'User deleted successfully!');
-    }
-   
 }
