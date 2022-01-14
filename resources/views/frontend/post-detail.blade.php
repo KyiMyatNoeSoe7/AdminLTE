@@ -7,7 +7,7 @@
                 <div class="card">
                     <div class="card-header text-center">
                         <h3>Post Details</h3>
-                        <a href="{{ route('index') }}" class="btn btn-outline-secondary float-right mr-5"><i
+                        <a href="{{ route('frontend.index') }}" class="btn btn-outline-secondary float-right mr-5"><i
                                 class="fa fa-arrow-circle-left mr-1"></i>Back</a>
                     </div>
                     <div class="row">

@@ -26,7 +26,7 @@ class ContactController extends Controller
      */
     public function create()
     {
-        //
+        return view('frontend.contact-us');
     }
 
     /**
@@ -44,52 +44,6 @@ class ContactController extends Controller
         $contact->message = $request->message;
         $contact->save();
 
-        return redirect('/contact-us')->with('success', 'Thank you!
-        Your message has been successfully sent.');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        return view('frontend.contact-us');
     }
 }

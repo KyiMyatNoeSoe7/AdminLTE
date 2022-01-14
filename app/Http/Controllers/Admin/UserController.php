@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 use App\Models\User;
 use Illuminate\Http\Request;
-
-
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {   
      /**
@@ -22,34 +22,34 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    // public function create()
-    // {
-    //     return view('users.create');
-    // }
+    public function create()
+    {
+        return view('admin.users.create');
+    }
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    // public function store(Request $request)
-    // {
-    //     User::create($request->all());
-     
-    //     return redirect()->route('users.index')
-    //                     ->with('success','User created successfully.');
-    // }
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    // public function show($id)
-    // {
-    //     $userData = User::find($id);
-    //     return response()->json($userData);
-    // }
+    public function store(Request $request)
+    {   
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'role_id' => ['required']
+        ]);
+        $user = User::create([
+            'name' => $request['name'],
+            'email' => $request['email'],
+            'password' => Hash::make($request['password']),
+            'role_id' => $request['role_id'],
+        ]);
+        $user->save();
+        $users = User::all();
+        return view('admin.users.index',compact('users'));
+    }
 
     /**
      * Update the specified resource in storage.
@@ -63,7 +63,8 @@ class UserController extends Controller
         $user = User::find($id);
         $user->update($request->all());
 
-        return redirect('admin/users')->with('success', 'User updated successfully!');
+        $users = User::all();
+        return view('admin.users.index',compact('users'));
     }
     
     /**
@@ -72,20 +73,12 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy($id)
     {
+        $user = User::findOrFail($id);
         $user->delete();
-        return redirect('admin/users')->with('success', 'User deleted successfully!');
+    
+        $users = User::all();
+        return view('admin.users.index',compact('users'));
     }
-    // public function showUser(Request $request)
-    // {   
-    //     $users = User::query();
-    //     if($request->keyword) {
-    //         return $users->where('name', 'like', "%" . $request->keyword . "%")
-    //        ->paginate(5);
-    //     } else {
-    //         return $users->all()->get()->paginate(5);
-    //     }
-
-    // }
 }

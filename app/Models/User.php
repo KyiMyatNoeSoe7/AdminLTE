@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\Auth;
 
 class User extends Authenticatable
 {
@@ -21,6 +22,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role_id',
     ];
 
     /**
@@ -41,12 +43,26 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    public function role()
-    {
-        return $this->belongsToMany(Role::class,'role_id');
-    }
+    // public function role()
+    // {
+    //     return $this->belongsToMany(Role::class,'role_id');
+    // }
     public function posts()
     {
         return $this->hasMany(Post::class);
     }
+    // public function handle($request)
+    // {
+    //     if (! Auth::check()) {
+    //         return redirect()->route('login');
+    //     }
+
+    //     if (Auth::user()->role == 1) {
+    //         return redirect()->route('admin');
+    //     }
+    //     if (Auth::user()->role == 2) {
+    //         return redirect()->route('user');
+    //     }
+    // }
+        
 }

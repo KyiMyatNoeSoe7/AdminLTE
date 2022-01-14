@@ -15,8 +15,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="{{ asset('admin/plugins/fontawesome-free/css/all.min.css') }}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset('admin/dist/css/adminlte.min.css') }}">
-  {{-- <link rel="stylesheet" href="{{ asset('css/dropzone.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/custom.css') }}"> --}}
+
+  <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+  
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -28,16 +30,29 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <li class="nav-item">
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="{{ url('/') }}" class="nav-link">Home</a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="{{url('/contact-us')}}" class="nav-link">Contact Us</a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="{{url('/about-us')}}" class="nav-link">About Us</a>
+      </li>
     </ul>
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto mr-5">
-        <li class="nav-item">
-            <form id="logout-form" action="{{ route('logout') }}" method="POST">
-                @csrf
-
-                <button type="submit" class="btn btn-secondary float-right"><i class="fa fa-power-off mr-2"></i> Logout</button>
-            </form>
-        </li>
+      <li class="nav-item">
+        <button class="nav-item btn btn-secondary float-right" href="{{ route('logout') }}"
+        onclick="event.preventDefault();
+        document.getElementById('logout-form').submit();">
+        <i class="fa fa-power-off mr-2"></i>
+        {{ __('Logout') }}
+    </button>
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+            @csrf
+        </form>
+    </li>
       </ul>
   </nav>
   <!-- /.navbar -->
@@ -45,26 +60,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="{{ route('admin.dashboard') }}" class="brand-link">
+    <a href="{{ route('admin.admin-dashboard') }}" class="brand-link">
       <img src="{{ asset('images/logo.jpg') }}" alt="Logo" class="brand-image img-rounded elevation-3">
-      <span class="brand-text-white font-weight-light">Admin LTE</span>
+      <span class="brand-text-white ml-2 font-weight-light">Admin LTE</span>
     </a>
 
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
-          {{-- @if(isset(Auth::user()->photo))
-            <img src="{{ asset('storage/user-photos/'.Auth::user()->photo) }}" class="img-circle elevation-2" alt="User Image">
-          @else
-            <img src="{{ asset('images/user.png') }}" class="img-circle elevation-2" alt="User Image">
-          @endif --}}
-        </div>
         <div class="info">
-            {{-- @auth
-                <a href="{{ route('admin.edit', Auth::user()->id)}}" class="d-block">{{Auth::user()->name}}</a>
-            @endauth --}}
+            @auth
+                <a href="{{ route('admin.admin-dashboard', Auth::user()->id)}}" class="d-block"><i class="fa fa-user fa-2x mr-3" aria-hidden="true"></i>{{Auth::user()->name}}</a>
+            @endauth
         </div>
       </div>
       <!-- Sidebar Menu -->
@@ -75,7 +83,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             
           <li class="nav-item">
             <a href="{{ route('admin.users.index') }}" class="nav-link">
-              <i class="nav-icon fas fa-users"></i>
+              <i class="nav-icon fas fa-users mr-2"></i>
               <p>
                Users
               </p>
@@ -83,15 +91,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </li>
           <li class="nav-item">
             <a href="{{ route('admin.posts.index') }}" class="nav-link">
-              <i class="nav-icon fas fa-building"></i>
+              <i class="nav-icon fas fa-th mr-2"></i>
               <p>
                Posts
               </p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+            <a href="{{ route('admin.admin-dashboard') }}" class="nav-link">
+              <i class="fa fa-address-card mr-3" aria-hidden="true"></i>
               <p>
                Profile
               </p>
@@ -99,12 +107,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </li>
           <li class="nav-item">
             <a href="{{ route('admin.contacts.index') }}" class="nav-link">
-              <i class="nav-icon fas fa-id-badge"></i>
+              <i class="fas fa-id-badge mr-3"></i>
               <p>
-               Contact
+               Contact Lists
               </p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="{{ route('admin.chart.index') }}" class="nav-link">
+                <i class="fa fa-list mr-3" aria-hidden="true"></i>
+                <p>
+                    Flow Chart
+                </p>
+            </a>
+         </li>         
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
@@ -152,7 +168,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="{{ asset('admin/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <!-- AdminLTE App -->
 <script src="{{ asset('admin/dist/js/adminlte.min.js') }}"></script>
-
 @yield('script')
 </body>
 </html>

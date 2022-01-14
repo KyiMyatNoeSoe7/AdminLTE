@@ -18,17 +18,17 @@
                         <tbody>
                             @foreach ($posts as $post)
                                 <tr>
-                                    <td>{{ $post->name }}</td>
-                                    <td>{{ $post->description }}</td>
+                                    <td style="max-width: 135px;">{{ $post->name }}</td>
+                                    <td style="max-width: 360px;">{{ $post->description }}</td>
                                     <td>
                                         <form action="{{ route('destroy', $post->id) }}" method="post">
                                             @csrf
                                             @method('delete')
 
-                                            <a href="{{ route('show', $post->id) }}" class="btn btn-info" title="Detail"
+                                            <a href="{{ route('show', $post->id) }}" class="btn btn-info ml-2 mr-2" title="Detail"
                                                 data-toggle="tooltip"><i class="fa fa-eye"></i>Show</a>
 
-                                            <a href="{{ route('edit', $post->id) }}" class="btn btn-success" title="Edit"
+                                            <a href="{{ route('edit', $post->id) }}" class="btn btn-success mr-2" title="Edit"
                                                 data-toggle="tooltip"><i class="fa fa-pen"></i>Edit</a>
                                             <button type="submit" class="mt-1 btn btn-danger"
                                                 onclick="return confirm('Are you sure want to delete?')"><i

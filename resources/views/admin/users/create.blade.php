@@ -1,13 +1,13 @@
-@extends('frontend.frontend-layout.master')
+@extends('admin.admin-layout.master')
 
-@section('frontend-content')
+@section('admin-content')
     <div class="container py-5">
-        <h3 class="text-primary font-bold text-center"><i>Register</i></h3>
+        <h3 class="text-primary font-bold text-center"><i>Create User</i></h3>
         <div class="row justify-content-center my-3">
             <div class="col-md-8">
                 <div class="card p-5 border border-dark">
                     <div class="card-body">
-                        <form method="POST" action="{{ route('register') }}">
+                        <form method="POST" action="{{ route('admin.users.store') }}">
                             @csrf
 
                             <div class="form-group row">
@@ -72,20 +72,24 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row mb-3 mt-3">
-                                <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn btn-primary btn-block">
-                                        {{ __('Register') }}
-                                    </button>
+                            <div class="form-group row mt-3">
+                                <label for="password-confirm"
+                                    class="col-md-4 col-form-label text-md-center">{{ __('Select your role id') }}</label>
+
+                                <div class="col-md-6">
+                                    <select name="role_id" id="role_id">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                    </select>
                                 </div>
                             </div>
-                            <div class="form-group row mt-3">
-                                <div class="col-md-9 offset-md-4">
-                                    Already have an account,
-                                    <a class="" href="{{ route('login') }}">
-                                        Login Here!
-                                    </a>
-                                </div>
+
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-rounded btn-primary btn-icon text-white px-5 py-2"
+                                    data-toggle="tooltip">Create User</button>
+                                <a href="{{ route('admin.users.index') }}"
+                                    class="px-3 py-2 btn btn-outline-secondary btn-rounded btn-icon float-right"
+                                    title="Cancel">Cancel</a>
                             </div>
                         </form>
                     </div>

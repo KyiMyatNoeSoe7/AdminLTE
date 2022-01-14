@@ -1,6 +1,6 @@
-@extends('user.user-layout.master')
+@extends('admin.admin-layout.master')
 
-@section('user-content')
+@section('admin-content')
     <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-md-10">
@@ -9,7 +9,7 @@
                         <h4>Edit Profile</h4>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('user.update', $user->id) }}" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('admin.update', $user->id) }}" method="post" enctype="multipart/form-data">
                             @csrf
                             @method('put')
 
@@ -33,7 +33,7 @@
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary">Update</button>
-                                <a href="{{ route('user.user-dashboard') }}"
+                                <a href="{{ route('admin.admin-dashboard') }}"
                                     class="btn btn-secondary float-right">Cancel</a>
                             </div>
                         </form>

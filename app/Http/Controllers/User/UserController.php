@@ -12,7 +12,8 @@ class UserController extends Controller
     {    
         $user = User::findOrFail(Auth::user()->id);
         return view('user.user-dashboard', compact('user'));
-    }  
+    } 
+     
     public function edit($id)
     {   
         $user = User::findOrFail($id);
@@ -31,6 +32,6 @@ class UserController extends Controller
         $user = User::find($id);
         $user->update($request->all());
 
-        return redirect('user/dashboard')->with('success', 'User updated successfully!');
+        return view('user.user-dashboard', compact('user'));
     }
 }

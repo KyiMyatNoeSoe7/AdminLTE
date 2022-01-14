@@ -1,31 +1,31 @@
 @extends('admin.admin-layout.master')
-
 @section('admin-content')
-<div class="container">
-    <div class="row justify-content-center mb-5">
-        <div class="col-md-10">
-            <h4>Total users in a month</h4>
-            <canvas id="company" width="100%"></canvas>
+    <div class="container mt-5 mb-5">
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header text-center">
+                        <h3 class="mt-3">Profile</h3>
+                        <a href="{{ route('admin.edit', Auth::user()->first()->id) }}"
+                            class="btn btn-outline-primary float-right mr-5"><i class="fa fa-pen mr-1"></i>Edit Profile</a>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item py-4">
+                                    <span class="text-primary">Name: </span>{{ $user->name }}
+                                </li>
+                                <li class="list-group-item py-4">
+                                    <span class="text-primary">Email: </span>{{ $user->email }}
+                                </li>
+                                <li class="list-group-item py-4">
+                                    <span class="text-primary">Role: </span>{{ $user->role_id }}
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="row justify-content-center">
-        <div class="col-md-10">
-            <h4>Total posts in a month</h4>
-            <canvas id="job" width="100%"></canvas>
-        </div>
-    </div>
-</div>
-
-@endsection
-@section('script')
-
-{{-- <script>
-    var users = @json(array_values($users));
-    var posts = @json(array_values($posts));
-</script> --}}
-
-<!-- chart js -->
-<script src="{{ asset('js/chart.min.js') }}"></script>
-<!-- custom js -->
-<script src="{{ asset('js/chart.js') }}"></script>
 @endsection
