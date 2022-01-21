@@ -20,8 +20,8 @@
 @section('script')
 
     <script>
-        var users = @json(array_values($users));
-        var posts = @json(array_values($posts));
+        var users = @json(array_values($userCount));
+        var posts = @json(array_values($postCount));
     </script>
 
     <!-- chart js -->

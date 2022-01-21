@@ -41,9 +41,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
     </ul>
 
     <!-- Right navbar links -->
-    <ul class="navbar-nav ml-auto">
+    <ul class="navbar-nav ml-auto float-right">
         <li class="nav-item">
-            <button class="nav-item btn btn-secondary float-right" href="{{ route('logout') }}"
+            <button class="nav-item btn btn-secondary" href="{{ route('logout') }}"
             onclick="event.preventDefault();
             document.getElementById('logout-form').submit();">
             <i class="fa fa-power-off mr-2"></i>
@@ -58,23 +58,32 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <aside class="main-sidebar sidebar-dark-primary elevation-4 position-fixed">
     <!-- Brand Logo -->
     <a href="{{ route('user.user-dashboard') }}" class="brand-link">
-      <span class="brand-text font-weight-light">User Dashboard</span>
+      <img src="{{ asset('images/logo3.png') }}" alt="Logo" class="brand-image img-rounded elevation-3">
+      <span class="brand-text-white ml-3 font-weight-light">Admin LTE</span>
     </a>
 
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+          @if (isset($user->photo))
+              <img src="{{ asset('storage/user-photos/' . $user->photo) }}" alt="" width="200"
+                  height="150">
+          @else
+              <img src="{{ asset('images/userdefault.png') }}" alt="" width="200" height="150">
+          @endif
+      </div>
         <div class="info">
             @auth
                 <a href="{{ route(
                     'user.user-dashboard',
                     Auth::user()->first()->id,
                     ) }}"
-                    class="d-block brand-text font-weight-light"><i class="fa fa-user fa-2x mr-3" aria-hidden="true"></i>{{ Auth::user()->name }}</a>
+                    class="d-block brand-text font-weight-light ml-2">{{ Auth::user()->name }}</a>
             @endauth
         </div>
       </div>
@@ -92,7 +101,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </li>  
             <li class="nav-item">
                 <a href="{{ route('index') }}" class="nav-link">
-                    <i class="nav-icon fas fa-th mr-3"></i>
+                    <i class="nav-icon fas fa-th ml-n1 mr-3"></i>
                     <p>
                         Post
                     </p>
@@ -123,14 +132,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <div class="content-header">
-      <div class="container-fluid">
-        <!-- /.content-wrapper -->
-      </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content-header -->
-
     <!-- Main content -->
 
     <div class="content">
@@ -155,7 +156,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- /.control-sidebar -->
 
   <!-- Main Footer -->
-  <footer class="main-footer">
+  <footer class="main-footer fixed-bottom">
     <!-- To the right -->
     <div class="float-right d-none d-sm-inline">
       Anything you want
@@ -174,5 +175,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="{{ asset('admin/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <!-- AdminLTE App -->
     <script src="{{ asset('admin/dist/js/adminlte.min.js') }}"></script>
+    <!-- preview js -->
+    <script src="{{ asset('js/previewImage.js') }}"></script>
+
 </body>
 </html>

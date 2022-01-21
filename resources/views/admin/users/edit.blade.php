@@ -34,13 +34,46 @@
                             </div>
                             <div class="form-group">
                                 <label for="">Role</label>
-                                <input type="text" name="role_name" id="" class="form-control" readonly
-                                    value="{{ $user->role->name }}">
-                                <input type="hidden" name="role_id" value="{{ $user->role_id }}">
-                                @error('role_id')
+                                    <select name="role" id="role" class="form-control">
+                                        <option class="select" value="{{ $user->role }}"> {{ $user->role }} </option>
+                                        <option class="select" value="admin"> Admin </option>
+                                        <option class="select" value="user"> User </option>
+                                    </select>
+                                @error('role')
                                     <span class="text-danger text-bold">{{ $message }}</span>
                                 @enderror
                             </div>
+
+                            <div class="form-group">
+                                <label for="">Phone Number</label>
+                                <input type="text" name="phone_no" id=""
+                                    class="form-control @error('phone_no') is-invalid @enderror"
+                                    value="{{ $user->phone_no }}">
+                                @error('phone_no')
+                                    <span class="text-danger text-bold">{{ $message }}</span>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label for="">Address</label>
+                                <textarea name="address" id="" cols="3" rows="2" class="form-control @error('address') is-invalid @enderror">{{ $user->address }}</textarea>
+                                @error('address')
+                                    <span class="text-danger text-bold">{{ $message }}</span>
+                                @enderror
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="">Photo</label>
+                                @if($user->photo)
+                                <img src="{{asset('storage/user-photos/'.$user->photo)}}" alt="" width="100" height="100" class="mb-2 ml-3" id="preview-img">
+                                @else
+                                <img src="{{asset('images/userdefault.png')}}" alt="" width="100" height="100" class="mb-2 ml-3" id="preview-img">
+                                @endif
+                                <input type="file" name="photo" id="profile" class="form-control-file @error('photo') is-invalid @enderror">
+                                @error('photo')
+                                <span class="text-danger text-bold">{{ $message }}</span>
+                                @enderror
+                            </div>
+
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary">Update</button>
                                 <a href="{{ route('admin.users.index') }}"

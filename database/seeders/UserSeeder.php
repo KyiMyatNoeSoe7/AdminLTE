@@ -19,7 +19,9 @@ class UserSeeder extends Seeder
             "name" => "Super Admin",
             "email" => "superadmin@gmail.com",
             "password" => Hash::make('12345678'),
-            "role_id" => 1,
+            "role" => "admin",
+            "phone_no" => "09400040404",
+            "address" => "Yangon",
         ]);
     }
 }

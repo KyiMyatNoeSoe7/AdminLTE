@@ -28,6 +28,17 @@
                             </div>
 
                             <div class="form-group row mt-3">
+                                <label for="photo" class="col-md-4 col-form-label text-md-center">Profile</label>
+    
+                                <div class="col-md-6">
+                                    <input type="file" name="photo" id="profile" class="form-control-file @error('photo') is-invalid @enderror">
+                                    @error('photo')
+                                    <span class="text-danger text-bold">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="form-group row mt-3">
                                 <label for="email"
                                     class="col-md-4 col-form-label text-md-center">{{ __('Enter your email') }}</label>
 
@@ -69,6 +80,34 @@
                                     <input id="password-confirm" type="password" class="form-control"
                                         name="password_confirmation" required autocomplete="new-password"
                                         placeholder="Enter confirm password">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="phone_no" class="col-md-4 col-form-label text-md-center">Phone Number</label>
+    
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control @error('phone_no') is-invalid @enderror" name="phone_no" value="{{ old('phone_no') }}" required autocomplete="phone_no" autofocus placeholder="Enter your phone number">
+    
+                                    @error('phone_no')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            
+                            <div class="form-group row mt-3">
+                                <label for="address" class="col-md-4 col-form-label text-md-center">Address</label>
+    
+                                <div class="col-md-6">
+                                    <textarea name="address" id="" cols="3" rows="2"  autofocus placeholder="Enter your address" class="form-control @error('address') is-invalid @enderror">{{ old('address') }}</textarea>
+    
+                                    @error('address')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
 

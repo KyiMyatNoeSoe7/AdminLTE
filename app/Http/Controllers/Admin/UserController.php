@@ -5,6 +5,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 class UserController extends Controller
 {   
      /**
@@ -17,6 +19,13 @@ class UserController extends Controller
         $users = User::all();
         return view('admin.users.index', compact('users'));     
     }
+
+    public function edit($id)
+    {   
+        $user = User::findOrFail($id);
+        return view('admin.users.edit', compact('user'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -38,13 +47,18 @@ class UserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'role_id' => ['required']
+            'role' => ['required'],
+            'phone_no' => ['nullable','string','max:15','unique:users,phone_no'],
+            'address' => ['nullable'],
         ]);
         $user = User::create([
             'name' => $request['name'],
             'email' => $request['email'],
             'password' => Hash::make($request['password']),
-            'role_id' => $request['role_id'],
+            'role' => $request['role'],
+            'phone_no' => $request['phone_no'],
+            'address' => $request['address'],
+            'photo' => $request['photo'],
         ]);
         $user->save();
         $users = User::all();
@@ -60,9 +74,23 @@ class UserController extends Controller
      */
     public function update($id, Request $request)
     {   
-        $user = User::find($id);
-        $user->update($request->all());
-
+        if($request->hasFile('photo')){
+            $photo = $request->file('photo');
+            $photoName = $photo->getClientOriginalName();
+            $request->file('photo')->storeAs('public/user-photos',$photoName);
+            User::where('id', $id)
+                ->update([
+                    "photo" => $photoName,
+                ]);
+        }
+        User::where('id', $id)
+        ->update([
+            "name" => $request->name,
+            "phone_no" => $request->phone_no,
+            "address" => $request->address,
+            "role" => $request->role,
+            "updated_at" => now()
+        ]);
         $users = User::all();
         return view('admin.users.index',compact('users'));
     }

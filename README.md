@@ -52,7 +52,8 @@ Email : superadmin@gmail.com
 Password : 12345678
 ```
 
-
+## Sample Post data
+- [csv file for posts data ](https://github.com/scm-developers/resources/raw/main/docs/How%20to%20environment%20setup%20for%20unit%20testing%20in%20Laravel.docx)
 
 
 

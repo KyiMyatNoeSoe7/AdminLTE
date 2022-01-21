@@ -20,22 +20,27 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 
 //for user
 Route::middleware(['auth','user'])->group(function () {
+
+    Route::post('user-posts/postImport', [App\Http\Controllers\User\PostController::class, 'postImport'])->name('post-import');
+    Route::get('user-posts/postExport', [App\Http\Controllers\User\PostController::class, 'postExport'])->name('post-export');
+    
     Route::get('user/dashboard', [App\Http\Controllers\User\UserController::class, 'index'])->name('user.user-dashboard');
     Route::get('user/{id}/edit', [App\Http\Controllers\User\UserController::class, 'edit'])->name('user.edit');
     Route::put('user/{id}', [App\Http\Controllers\User\UserController::class, 'update'])->name('user.update');
-
 
     Route::get('user-posts', [App\Http\Controllers\User\PostController::class, 'index'])->name('index');
     Route::get('user-posts/create', [App\Http\Controllers\User\PostController::class, 'create'])->name('create');
     Route::post('user-posts', [App\Http\Controllers\User\PostController::class, 'store'])->name('store');
     Route::get('user-posts/{post_id}/edit', [App\Http\Controllers\User\PostController::class, 'edit'])->name('edit');
     Route::put('user-posts/{post_id}', [App\Http\Controllers\User\PostController::class, 'update'])->name('update');
-    Route::get('user-posts/{post_id}', [App\Http\Controllers\User\PostController::class, 'show'])->name('show');
     Route::delete('user-posts/{post_id}', [App\Http\Controllers\User\PostController::class, 'destroy'])->name('destroy');
 });
 
 //for admin 
 Route::middleware(['auth','admin'])->group(function () {
+
+    Route::post('import', [App\Http\Controllers\Admin\PostController::class, 'import'])->name('admin.import');
+    Route::get('export', [App\Http\Controllers\Admin\PostController::class, 'export'])->name('admin.export');
 
     Route::get('admin-posts/create', [App\Http\Controllers\Admin\PostController::class, 'create'])->name('admin.posts.create');
 
@@ -47,7 +52,6 @@ Route::middleware(['auth','admin'])->group(function () {
 
     Route::get('admin-posts', [App\Http\Controllers\Admin\PostController::class, 'index'])->name('admin.posts.index');
     Route::delete('admin-posts/{post_id}', [App\Http\Controllers\Admin\PostController::class, 'destroy'])->name('admin.posts.destroy');
-    Route::get('admin-posts/{post_id}', [App\Http\Controllers\Admin\PostController::class, 'show'])->name('admin.posts.show');
     Route::post('admin-posts', [App\Http\Controllers\Admin\PostController::class, 'store'])->name('admin.posts.store');
     Route::get('admin-posts/{post_id}/edit', [App\Http\Controllers\Admin\PostController::class, 'edit'])->name('admin.posts.edit');
     Route::put('admin-posts/{post_id}', [App\Http\Controllers\Admin\PostController::class, 'update'])->name('admin.posts.update');

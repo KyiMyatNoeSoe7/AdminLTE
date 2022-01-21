@@ -22,7 +22,10 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'role_id',
+        'role',
+        'phone_no',
+        'address',
+        'photo',
     ];
 
     /**
@@ -43,26 +46,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
     // public function role()
     // {
     //     return $this->belongsToMany(Role::class,'role_id');
     // }
+
     public function posts()
     {
         return $this->hasMany(Post::class);
-    }
-    // public function handle($request)
-    // {
-    //     if (! Auth::check()) {
-    //         return redirect()->route('login');
-    //     }
-
-    //     if (Auth::user()->role == 1) {
-    //         return redirect()->route('admin');
-    //     }
-    //     if (Auth::user()->role == 2) {
-    //         return redirect()->route('user');
-    //     }
-    // }
-        
+    }      
 }

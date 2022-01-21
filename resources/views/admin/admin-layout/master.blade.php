@@ -24,7 +24,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <div class="wrapper">
 
   <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+  <nav class="main-header navbar navbar-expand navbar-white navbar-light" >
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
@@ -41,7 +41,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       </li>
     </ul>
     <!-- Right navbar links -->
-    <ul class="navbar-nav ml-auto mr-5">
+    <ul class="navbar-nav ml-auto float-right" >
       <li class="nav-item">
         <button class="nav-item btn btn-secondary float-right" href="{{ route('logout') }}"
         onclick="event.preventDefault();
@@ -58,20 +58,28 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <aside class="main-sidebar sidebar-dark-primary elevation-4 position-fixed">
     <!-- Brand Logo -->
     <a href="{{ route('admin.admin-dashboard') }}" class="brand-link">
-      <img src="{{ asset('images/logo.jpg') }}" alt="Logo" class="brand-image img-rounded elevation-3">
-      <span class="brand-text-white ml-2 font-weight-light">Admin LTE</span>
+      <img src="{{ asset('images/logo3.png') }}" alt="Logo" class="brand-image img-rounded elevation-3">
+      <span class="brand-text-white ml-3 font-weight-light">Admin LTE</span>
     </a>
 
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+          @if (isset($user->photo))
+              <img src="{{ asset('storage/user-photos/' . $user->photo) }}" alt="" width="200"
+                  height="150">
+          @else
+              <img src="{{ asset('images/userdefault.png') }}" alt="" width="200" height="150">
+          @endif
+      </div>
         <div class="info">
             @auth
-                <a href="{{ route('admin.admin-dashboard', Auth::user()->id)}}" class="d-block"><i class="fa fa-user fa-2x mr-3" aria-hidden="true"></i>{{Auth::user()->name}}</a>
+                <a href="{{ route('admin.admin-dashboard', Auth::user()->id)}}" class="d-block">{{Auth::user()->name}}</a>
             @endauth
         </div>
       </div>
@@ -81,41 +89,41 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
             
-          <li class="nav-item">
+          <li class="nav-item text-left">
             <a href="{{ route('admin.users.index') }}" class="nav-link">
-              <i class="nav-icon fas fa-users mr-2"></i>
+              <i class="nav-icon fas fa-users"></i>
               <p>
                Users
               </p>
             </a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item text-left">
             <a href="{{ route('admin.posts.index') }}" class="nav-link">
-              <i class="nav-icon fas fa-th mr-2"></i>
+              <i class="nav-icon fas fa-th"></i>
               <p>
                Posts
               </p>
             </a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item text-left ml-1">
             <a href="{{ route('admin.admin-dashboard') }}" class="nav-link">
-              <i class="fa fa-address-card mr-3" aria-hidden="true"></i>
+              <i class="fa fa-address-card mr-2" aria-hidden="true"></i>
               <p>
                Profile
               </p>
             </a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item text-left ml-1">
             <a href="{{ route('admin.contacts.index') }}" class="nav-link">
-              <i class="fas fa-id-badge mr-3"></i>
+              <i class="fas fa-id-badge mr-2"></i>
               <p>
                Contact Lists
               </p>
             </a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item text-left ml-1">
             <a href="{{ route('admin.chart.index') }}" class="nav-link">
-                <i class="fa fa-list mr-3" aria-hidden="true"></i>
+                <i class="fa fa-list mr-2"></i>
                 <p>
                     Flow Chart
                 </p>
@@ -149,7 +157,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- /.control-sidebar -->
 
   <!-- Main Footer -->
-  <footer class="main-footer">
+  <footer class="main-footer fixed-bottom">
     <!-- To the right -->
     <div class="float-right d-none d-sm-inline">
       Anything you want
@@ -168,6 +176,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="{{ asset('admin/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <!-- AdminLTE App -->
 <script src="{{ asset('admin/dist/js/adminlte.min.js') }}"></script>
+<!-- preview js -->
+<script src="{{ asset('js/previewImage.js') }}"></script>
 @yield('script')
 </body>
 </html>

@@ -26,7 +26,7 @@
 </head>
 <style>
     .main-body {
-        padding-bottom: 300px;
+        padding-bottom: 150px;
     }
 
 </style>
@@ -81,7 +81,7 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-center" aria-labelledby="navbarDropdown">
-                                    @if (Auth::user()->role_id == 1)
+                                    @if (Auth::user()->role == 'admin')
                                         <a class="dropdown-item" href="{{ url('admin/dashboard') }}">
                                             Admin Dashboard
                                         </a>
@@ -113,7 +113,7 @@
             @yield('frontend-content')
         </main>
 
-        <footer class="page-footer font-small fixed-bottom" style="background-color: #E2EFF8;">
+        <footer class="page-footer font-small" style="background-color: #E2EFF8;">
             <div class="container text-center mb-n3">
                 <div class="row">
 

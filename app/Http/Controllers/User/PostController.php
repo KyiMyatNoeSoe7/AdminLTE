@@ -5,6 +5,9 @@ namespace App\Http\Controllers\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Post;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\PostsExport;
+use Illuminate\Support\Facades\DB;
 class PostController extends Controller
 {   
    /**
@@ -38,7 +41,7 @@ class PostController extends Controller
     public function store(Request $request)
     {
          $request->validate([
-            'name' => 'required',
+            'name' => 'required|unique:posts,name',
             'description' => 'required',
         ]);
     
@@ -46,18 +49,6 @@ class PostController extends Controller
         $post->save();
         $posts = Post::all();
         return view('user.user-posts.index',compact('posts'));
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Post  $post
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {   
-        $post = Post::findOrFail($id);
-        return view('user.user-posts.posts-detail',compact('post'));
     }
 
     /**
@@ -82,7 +73,7 @@ class PostController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name' => 'required',
+            'name' => 'required|unique:posts,name',
             'description' => 'required',
         ]);
         $post = Post::findOrFail($id);
@@ -105,5 +96,53 @@ class PostController extends Controller
         $posts = Post::all();
         return view('user.user-posts.index',compact('posts'));
     }
+
+     /**
+     * To export student table to csv file
+     * @param
+     * @return
+     */
+    public function postExport()
+    {
+        return Excel::download(new PostsExport, 'posts.csv');
+    }
+
+    /**
+     * To import csv to student table
+     * @param Request $request (csv file)
+     * @return
+     */
+    public function postImport(Request $request)
+    {   
+        if (($handle = fopen($request->file('file'), 'r' )) !== FALSE) {
+            $importData_arr = array();
+            $i = 1;
+            while ( ($data = fgetcsv( $handle, 1000, ',' )) !== FALSE ) {
+                      $num = count($data);
+                      for ($c=0; $c < $num; $c++) {
+                          $importData_arr[$i][] = $data [$c];
+                      }
+                      $i++;
+                  }
+         
+               foreach ($importData_arr as $key=>$importData) {
+                    if ($key == 1) {     
+                        continue;
+                    }
+                    $postExist = Post::where('name', $importData[1])->exists();
+
+                    if(! $postExist) {
+                        $insertData = array(
+                            "name"=>$importData[1],
+                            "description"=>$importData[2]);
+                        DB::table('posts')->insert($insertData);
+                    }
+                  }
+            }
+            fclose ( $handle );
+        $posts = Post::all();
+        return view('user.user-posts.index',compact('posts'));
+    }
+
 }
 

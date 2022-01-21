@@ -20,17 +20,52 @@
                                     <td style="max-width: 135px;">{{ $post->name }}</td>
                                     <td style="max-width: 360px;">{{ $post->description }}</td>
                                     <td>
-                                        <a href="{{ route('frontend.show', $post->id) }}" class="btn btn-info ml-5"
-                                            title="Detail" data-toggle="tooltip"><i class="fa fa-eye"></i>Show</a>
-
+                                        <button type="button" onclick="postdetails({{ $post }})"
+                                        class="btn btn-info m-1" data-toggle="modal"><i class="fa fa-eye"></i>Show</button>
                                     </td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
+
+                    <div class="modal fade" id="postdetails" tabindex="-1" aria-labelledby="postdetailsLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel">Post Details</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item py-4">
+                                        Name: <span id="show-name" class="text-primary ml-1"></span>
+                                    </li>
+                                    <li class="list-group-item py-4">
+                                        Description: <span id="show-description" class="text-primary ml-1"></span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
     </div>
 
+
 @endsection
+
+<script>
+    function postdetails(post) {
+        $("#postdetails").modal('show');
+        $("#show-name").text(post.name);
+        $("#show-description").text(post.description);
+    }
+</script>

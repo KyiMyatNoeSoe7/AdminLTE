@@ -17,7 +17,7 @@ class UserAuth
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Auth::user()->role_id != 2) {
+        if(Auth::user()->role != 'user') {
             return back();
         }else {
             return $next($request);
