@@ -53,7 +53,7 @@ Password : 12345678
 ```
 
 ## Sample Post data
-- [csv file for posts data ](https://github.com/scm-developers/resources/raw/main/docs/How%20to%20environment%20setup%20for%20unit%20testing%20in%20Laravel.docx)
+- [csv file for posts data ](https://github.com/KyiMyatNoeSoe7/AdminLTE/blob/c60028244e391a2523523da7bce9164f768d89ba/docs/export-posts.csv)
 
 
 
