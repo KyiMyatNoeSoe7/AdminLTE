@@ -111,3 +111,7 @@ return view('user.user-posts.index', compact('posts'));
 ![image](https://user-images.githubusercontent.com/41044655/150685387-60ad0431-191f-4cdf-aece-e351a98a78c8.png)
 
 -----
+
+22) - make image display responsive.
+    - make align vertical middle with image & "Super Admin" text
+![Admin Dashboard](./public/images/admin.png)
