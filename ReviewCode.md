@@ -96,3 +96,18 @@ return view('user.user-posts.index', compact('posts'));
 18) Remove unused code.
 
 -----
+
+19) Add close event when clicked.
+![image](https://user-images.githubusercontent.com/41044655/150685165-7fcb3917-1aed-4e85-b6c6-8adf00c8c8ed.png)
+
+-----
+
+20) Make vertical align center.
+![image](https://user-images.githubusercontent.com/41044655/150685284-4938fb0d-0132-4a9e-9e5b-4f753cc1ca0a.png)
+
+-----
+
+21) After login, userdashboard is not show even click the "dashboard".
+![image](https://user-images.githubusercontent.com/41044655/150685387-60ad0431-191f-4cdf-aece-e351a98a78c8.png)
+
+-----
