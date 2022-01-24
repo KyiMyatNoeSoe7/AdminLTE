@@ -5,11 +5,11 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">
-                        <h3 class="mt-3  text-center">Profile</h3>
+                    <div class="card-header  text-center">
+                        <h3 class="mt-3">Profile</h3>
                         @if ($user->photo)
                             <img src="{{ asset('storage/user-photos/' . $user->photo) }}" class="img-fluid" alt=""
-                                width="200" height="150">
+                            style="object-fit: contain; border-radius: 20%;" width="200" height="150">
                         @else
                             <img src="{{ asset('images/userdefault.png') }}" class="img-fluid" alt="" width="200"
                                 height="150">
@@ -26,7 +26,7 @@
                                     <span class="text-primary">Email: </span>{{ $user->email }}
                                 </li>
                                 <li class="list-group-item py-4">
-                                    <span class="text-primary">Password: </span>{{ $user->password }}
+                                    <span class="text-primary">Password: </span>{{ "########" }}
                                 </li>
                                 <li class="list-group-item py-4">
                                     <span class="text-primary">Phone No: </span>{{ $user->phone_no }}

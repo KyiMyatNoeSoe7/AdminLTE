@@ -23,20 +23,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <div class="wrapper">
 
   <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+  <nav class="main-header navbar navbar-expand navbar-white navbar-light fixed-top">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="{{ url('/') }}" class="nav-link">Home</a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="{{url('/contact-us')}}" class="nav-link">Contact Us</a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="{{url('/about-us')}}" class="nav-link">About Us</a>
       </li>
     </ul>
 
@@ -72,7 +63,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <div class="image">
           @if (isset($user->photo))
               <img src="{{ asset('storage/user-photos/' . $user->photo) }}" alt="" width="200"
-              class="img-fluid" height="150">
+              style="object-fit: contain;" class="img-fluid" height="150">
           @else
               <img src="{{ asset('images/userdefault.png') }}" alt="" width="200" height="150" class="img-fluid">
           @endif
@@ -134,7 +125,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <div class="content-wrapper">
     <!-- Main content -->
 
-    <div class="content">
+    <div class="content pt-4 pb-5 mt-5 mb-5">
       <div class="container-fluid">
         <main>
             @yield('user-content')
@@ -156,7 +147,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- /.control-sidebar -->
 
   <!-- Main Footer -->
-  <footer class="main-footer fixed-bottom">
+  <footer class="main-footer fixed-bottom py-2">
     <!-- To the right -->
     <div class="float-right d-none d-sm-inline">
       Anything you want

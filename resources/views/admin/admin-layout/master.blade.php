@@ -24,7 +24,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <div class="wrapper">
 
   <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-white navbar-light" >
+  <nav class="main-header navbar navbar-expand navbar-white navbar-light fixed-top" >
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
@@ -32,12 +32,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="{{ url('/') }}" class="nav-link">Home</a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="{{url('/contact-us')}}" class="nav-link">Contact Us</a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="{{url('/about-us')}}" class="nav-link">About Us</a>
       </li>
     </ul>
     <!-- Right navbar links -->
@@ -68,11 +62,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
+      
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
+        <div class="image flex-column">
           @if (isset($user->photo))
-              <img src="{{ asset('storage/user-photos/' . $user->photo) }}" alt="" class="img-fluid" width="200"
-                  height="150">
+              <img src="{{ asset('storage/user-photos/' . $user->photo) }}" alt="" width="200" height="150"
+              style="object-fit: contain; border-radius: 20%;">
           @else
               <img src="{{ asset('images/userdefault.png') }}" alt="" width="200" height="150" class="img-fluid">
           @endif
@@ -139,7 +134,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Main content -->
-    <div class="content py-5">
+    <div class="content pt-4 pb-5 mt-5">
         @yield('admin-content')
     </div>
     <!-- /.content -->
@@ -157,7 +152,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- /.control-sidebar -->
 
   <!-- Main Footer -->
-  <footer class="main-footer fixed-bottom">
+  <footer class="main-footer py-2 fixed-bottom">
     <!-- To the right -->
     <div class="float-right d-none d-sm-inline">
       Anything you want

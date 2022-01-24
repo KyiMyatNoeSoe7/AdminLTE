@@ -4,28 +4,37 @@
     <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-md-12">
-                <h4>Contact Message</h4>
+                <h4 style="display: inline;">Contact Message</h4>
+                <form class="form-group float-right">
+                    <div class="input-group">
+                        <input name="search" class="form-control" type="search" placeholder="Search" aria-label="Search"
+                            value="{{ request('search') }}">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="submit">Search</button>
+                        </div>
+                    </div>
+                </form>
                 <div class="table-responsive mt-4">
                     <table class="table table-bordered shadow-md bg-white">
                         <thead>
                             <tr>
-                                <th>Id</th>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Phone No</th>
-                                <th>Message</th>
-                                <th></th>
+                                <th class="text-center">Id</th>
+                                <th class="text-center">Name</th>
+                                <th class="text-center">Email</th>
+                                <th class="text-center">Phone No</th>
+                                <th class="text-center">Message</th>
+                                <th class="text-center"></th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($contacts as $contact)
                                 <tr>
-                                    <td>{{ $contact->id }}</td>
-                                    <td>{{ $contact->name }}</td>
-                                    <td>{{ $contact->email }}</td>
-                                    <td>{{ $contact->phone_no }}</td>
-                                    <td>{{ $contact->message }}</td>
-                                    <td>
+                                    <td class="text-center">{{ $contact->id }}</td>
+                                    <td class="text-center">{{ $contact->name }}</td>
+                                    <td class="text-center">{{ $contact->email }}</td>
+                                    <td class="text-center">{{ $contact->phone_no }}</td>
+                                    <td style="max-width: 360px;">{{ $contact->message }}</td>
+                                    <td class="text-center">
                                         <form action="{{ route('admin.contacts.destroy', $contact->id) }}" method="post">
                                             @csrf
                                             @method('delete')

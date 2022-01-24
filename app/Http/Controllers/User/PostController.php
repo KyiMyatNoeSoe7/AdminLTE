@@ -17,7 +17,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::where('name', 'Like', "%".request('search')."%")->orderBy('id', 'DESC')->paginate(10);
     
         return view('user.user-posts.index',compact('posts'));
     }

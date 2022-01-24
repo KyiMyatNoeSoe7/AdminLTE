@@ -1,7 +1,7 @@
 @extends('admin.admin-layout.master')
 
 @section('admin-content')
-    <div class="container">
+    <div class="container mb-5">
         <div class="row justify-content-center mb-5">
             <div class="col-md-10">
                 <h4>Total users in a month</h4>

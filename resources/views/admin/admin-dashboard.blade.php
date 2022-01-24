@@ -8,7 +8,7 @@
                         <h3 class="mt-3">Profile</h3>
                         @if ($user->photo)
                             <img src="{{ asset('storage/user-photos/' . $user->photo) }}" class="img-fluid" alt=""
-                                width="200" height="150">
+                                style="object-fit: contain; border-radius: 20%;" width="200" height="150">
                         @else
                             <img src="{{ asset('images/userdefault.png') }}" class="img-fluid" alt="" width="200"
                                 height="150">

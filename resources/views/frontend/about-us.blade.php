@@ -1,8 +1,8 @@
 @extends('frontend.frontend-layout.master')
 @section('frontend-content')
 
-    <div class="container py-5">
-        <div style="color: #0BA5A9;" class="text-center">
+    <div class="container">
+        <div style="color: #0BA5A9;" class="text-center pt-3">
             <h1 style="color: #0BA5A9;">About Us</h1>
         </div>
         <div class="container">

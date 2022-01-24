@@ -14,7 +14,7 @@ class ContactController extends Controller
      */
     public function index()
     {
-        $contacts =  Contact::all();
+        $contacts =  Contact::where('name', 'Like', "%".request('search')."%")->orderBy('id', 'DESC')->paginate(10);
         return view('admin.contacts.index', compact('contacts'));
     }
 

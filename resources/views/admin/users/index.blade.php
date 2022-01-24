@@ -4,8 +4,17 @@
     <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-md-12">
-                <a href="{{ route('admin.users.create') }}" class="px-3 btn btn-primary float-right">Create User</a>
-                <h4>All Users</h4>
+                <form class="form-inline float-right">
+                    <div class="input-group">
+                        <input name="search" class="form-control" type="search" placeholder="Search" aria-label="Search"
+                            value="{{ request('search') }}">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="submit">Search</button>
+                        </div>
+                    </div>
+                </form>
+                <a href="{{ route('admin.users.create') }}" class="px-3 btn btn-primary float-left">Create User</a>
+                <h4 class="text-center">All Users</h4>
 
                 <div class="table-responsive mt-4">
                     <table class="table table-bordered bg-white text-center">
@@ -32,7 +41,8 @@
                                     </td>
                                     <td>
                                         <img src="{{ asset('storage/user-photos/' . $user->photo) }}" alt="User Photo"
-                                            class="img-fluid" style="width: 100px;  height: 100px">
+                                            class="img-fluid"
+                                            style="width: 100px;  height: 100px; object-fit: contain;">
                                     </td>
                                     <td class="pt-5">{{ $user->phone_no }}</td>
                                     <td class="pt-5">{{ $user->address }}</td>

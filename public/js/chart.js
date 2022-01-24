@@ -4,7 +4,7 @@ var userChart = new Chart(user, {
     data: {
         labels: ['January', 'February', 'March', 'April', 'May', 'June','July','August','September','October','November','December'],
         datasets: [{
-            label: 'no of users',
+            label: 'Number of users',
             data: users,
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
@@ -52,7 +52,7 @@ var postChart = new Chart(post, {
     data: {
         labels: ['January', 'February', 'March', 'April', 'May', 'June','July','August','September','October','November','December'],
         datasets: [{
-            label: 'no of posts',
+            label: 'Number of posts',
             data: posts,
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',

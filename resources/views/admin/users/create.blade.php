@@ -77,20 +77,22 @@
                                     class="col-md-4 col-form-label text-md-center">{{ __('Select your role') }}</label>
 
                                 <div class="col-md-6">
-                                    <select name="role" id="role">
+                                    <select name="role" id="role" style="width: 100%;" class="text-center form-select">
                                         <option class="select" value="admin"> Admin </option>
                                         <option class="select" value="user"> User </option>
                                     </select>
                                 </div>
                             </div>
 
-                            <div class="form-group">
-                                <label for="">Photo</label>
-                                <input type="file" name="photo" id="profile"
-                                    class="form-control-file @error('photo') is-invalid @enderror">
-                                @error('photo')
-                                    <span class="text-danger text-bold">{{ $message }}</span>
-                                @enderror
+                            <div class="form-group row">
+                                <label for="photo" class="col-md-4 col-form-label text-md-center">Photo</label>
+                                <div class="col-md-6">
+                                    <input type="file" name="photo" id="profile"
+                                        class="form-control-file @error('photo') is-invalid @enderror">
+                                    @error('photo')
+                                        <span class="text-danger text-bold">{{ $message }}</span>
+                                    @enderror
+                                </div>
                             </div>
 
                             <div class="form-group row">

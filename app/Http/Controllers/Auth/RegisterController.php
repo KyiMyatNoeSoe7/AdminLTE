@@ -56,6 +56,7 @@ class RegisterController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'phone_no' => 'nullable|string|max:15|unique:users,phone_no,',
             'address' => 'nullable',
+            'photo' => 'required',
         ]);
     }
 

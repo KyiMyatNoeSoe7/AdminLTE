@@ -3,20 +3,34 @@
 @section('user-content')
     <div class="container-fluid">
         <div class="row justify-content-center">
-            <h2 class="text-center mt-2">All Posts</h2>
+
             <div class="col-md-12">
-                <form action="{{ route('post-import') }}" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    <div class="form-group mb-3 float-left" style="max-width: 400px;">
-                        <div>
-                            <input type="file" name="file" class="form-control">
-                        </div>
+                <h2 class="text-center">All Posts</h2>
+            
+                    <div class="col-md-12">
+                        <form action="{{ route('post-import') }}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <div class="mb-4 float-left ml-n3" style="max-width: 400px;">
+                                <div>
+                                    <input type="file" name="file" class="form-control">
+                                </div>
+                            </div>
+                            <button class="btn btn-primary float-left ml-2" type="submit">Import data</button>
+                            <a class="btn btn-success float-left ml-3" href="{{ route('post-export') }}">Export data</a>
+                        </form>
+                        <a href="{{ route('create') }}" class="px-3 btn btn-primary ml-5">Create Post</a>
+                        <form class="form-group float-right">
+                            <div class="input-group">
+                                <input name="search" class="form-control" type="search" placeholder="Search" aria-label="Search"
+                                    value="{{ request('search') }}">
+                                <div class="input-group-append mr-n3">
+                                    <button class="btn btn-primary" type="submit">Search</button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
-                    <button class="btn btn-primary float-left" type="submit">Import data</button>
-                    <a class="btn btn-success float-left ml-5" href="{{ route('post-export') }}">Export data</a>
-                </form>
-                <a href="{{ route('create') }}" class="px-3 mb-3 btn btn-primary float-right">Create Post</a>
-                <div class="table-responsive mt-4 mb-5">
+                
+                <div class="table-responsive mt-4">
                     <table class="table table-bordered">
                         <thead>
                             <tr>

@@ -1,8 +1,8 @@
 @extends('frontend.frontend-layout.master')
 @section('frontend-content')
 
-    <div class="container py-5">
-        <div class="section mb-5">
+    <div class="container">
+        <div class="section">
             <div class="row mt-3">
                 <div class="col-md-12">
 
@@ -22,7 +22,7 @@
                                     <a href="" type="submit" onclick="postdetails({{ $post }})"
                                         class="font-weight-bold text-center" data-toggle="modal"
                                         style="color: #3490DC; max-width: 135px;">
-                                        <h5>{{ $post->name }}</h5>
+                                        <h5 class="mt-5">{{ $post->name }}</h5>
                                     </a>
 
                                 </div>

@@ -7,10 +7,7 @@ use App\Models\User;
 use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Log;
-
 class DashboardController extends Controller
 {   
 
@@ -57,20 +54,20 @@ class DashboardController extends Controller
         $postCount = $postArr;
     	$userCount = $userArr;    	
     
-        return view('admin.admin-chart', compact('postCount','userCount'));
+        return view('admin.admin-chart',compact('postCount','userCount'));
 
     }
 
     public function profile()
     {    
         $user = User::findOrFail(Auth::user()->id);
-        return view('admin.admin-dashboard', compact('user'));
+        return view('admin.admin-dashboard',compact('user'));
     }
     
     public function edit($id)
     {   
         $user = User::findOrFail($id);
-        return view('admin.edit', compact('user'));
+        return view('admin.edit',compact('user'));
     }
 
     /**
