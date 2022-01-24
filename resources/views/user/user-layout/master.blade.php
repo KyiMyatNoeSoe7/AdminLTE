@@ -72,9 +72,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <div class="image">
           @if (isset($user->photo))
               <img src="{{ asset('storage/user-photos/' . $user->photo) }}" alt="" width="200"
-                  height="150">
+              class="img-fluid" height="150">
           @else
-              <img src="{{ asset('images/userdefault.png') }}" alt="" width="200" height="150">
+              <img src="{{ asset('images/userdefault.png') }}" alt="" width="200" height="150" class="img-fluid">
           @endif
       </div>
         <div class="info">

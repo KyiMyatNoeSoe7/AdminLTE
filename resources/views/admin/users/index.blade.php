@@ -24,27 +24,29 @@
                         <tbody>
                             @foreach ($users as $user)
                                 <tr>
-                                    <td>{{ $user->id }}</td>
-                                    <td>{{ $user->name }}</td>
-                                    <td>{{ $user->email }}</td>
-                                    <td>
-                                        <span class="badge badge-primary">{{$user->role}}</span>
+                                    <td class="pt-5">{{ $user->id }}</td>
+                                    <td class="pt-5">{{ $user->name }}</td>
+                                    <td class="pt-5">{{ $user->email }}</td>
+                                    <td class="pt-5">
+                                        <span class="badge badge-primary">{{ $user->role }}</span>
                                     </td>
                                     <td>
                                         <img src="{{ asset('storage/user-photos/' . $user->photo) }}" alt="User Photo"
-                                                style="width: 100px;  height: 100px">
+                                            class="img-fluid" style="width: 100px;  height: 100px">
                                     </td>
-                                    <td>{{ $user->phone_no }}</td>
-                                    <td>{{ $user->address }}</td>
-                                    <td class="text-center">
+                                    <td class="pt-5">{{ $user->phone_no }}</td>
+                                    <td class="pt-5">{{ $user->address }}</td>
+                                    <td class="text-center pt-5">
                                         <form action="{{ route('admin.users.destroy', $user->id) }}" method="post">
                                             @csrf
                                             @method('delete')
 
-                                            <a href="{{ route('admin.users.edit', $user->id) }}" class="btn btn-success"
-                                                title="Edit" data-toggle="tooltip"><i class="fa fa-pen"></i></a>
+                                            <a href="{{ route('admin.users.edit', $user->id) }}"
+                                                class="btn btn-success m-1" title="Edit" data-toggle="tooltip"><i
+                                                    class="fa fa-pen"></i></a>
                                             <button type="button" onclick="userdetails({{ $user }})"
-                                                class="btn btn-info m-1" data-toggle="modal"><i class="fa fa-eye"></i></button>
+                                                class="btn btn-info m-1" data-toggle="modal"><i
+                                                    class="fa fa-eye"></i></button>
 
                                             <button type="submit" class="btn btn-danger m-1"
                                                 onclick="return confirm('Are you sure want to delete?')"><i
@@ -56,38 +58,39 @@
                         </tbody>
                     </table>
 
-                    <div class="modal fade" id="userdetails" tabindex="-1" aria-labelledby="userdetailsLabel" aria-hidden="true">
+                    <div class="modal fade" id="userdetails" tabindex="-1" aria-labelledby="userdetailsLabel"
+                        aria-hidden="true">
                         <div class="modal-dialog">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h5 class="modal-title" id="exampleModalLabel">Profile</h5>
-                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                              </button>
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Profile</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item py-4">
+                                            Name:<span id="show-name" class="text-primary ml-1"></span>
+                                        </li>
+                                        <li class="list-group-item py-4">
+                                            Email:<span id="show-email" class="text-primary ml-1"></span>
+                                        </li>
+                                        <li class="list-group-item py-4">
+                                            Role:<span id="show-role" class="text-primary ml-1"></span>
+                                        </li>
+                                        <li class="list-group-item py-4">
+                                            Phone_no:<span id="show-phone_no" class="text-primary ml-1"></span>
+                                        </li>
+                                        <li class="list-group-item py-4">
+                                            Address:<span id="show-address" class="text-primary ml-1"> </span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div>
                             </div>
-                            <div class="modal-body">
-                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item py-4">
-                                        Name:<span id="show-name" class="text-primary ml-1"></span>
-                                    </li>
-                                    <li class="list-group-item py-4">
-                                        Email:<span id="show-email" class="text-primary ml-1"></span>
-                                    </li>
-                                    <li class="list-group-item py-4">
-                                        Role:<span id="show-role" class="text-primary ml-1"></span>
-                                    </li>
-                                    <li class="list-group-item py-4">
-                                        Phone_no:<span id="show-phone_no" class="text-primary ml-1"></span>
-                                    </li>
-                                    <li class="list-group-item py-4">
-                                        Address:<span id="show-address" class="text-primary ml-1"> </span>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            </div>
-                          </div>
                         </div>
                     </div>
 

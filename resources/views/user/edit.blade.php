@@ -42,22 +42,26 @@
                             </div>
                             <div class="form-group">
                                 <label for="">Address</label>
-                                <textarea name="address" id="" cols="3" rows="2" class="form-control @error('address') is-invalid @enderror">{{ $user->address }}</textarea>
+                                <textarea name="address" id="" cols="3" rows="2"
+                                    class="form-control @error('address') is-invalid @enderror">{{ $user->address }}</textarea>
                                 @error('address')
                                     <span class="text-danger text-bold">{{ $message }}</span>
                                 @enderror
                             </div>
-                            
+
                             <div class="form-group">
                                 <label for="">Photo</label>
-                                @if($user->photo)
-                                <img src="{{asset('storage/user-photos/'.$user->photo)}}" alt="" width="100" height="100" class="mb-2 ml-3" id="preview-img">
+                                @if ($user->photo)
+                                    <img src="{{ asset('storage/user-photos/' . $user->photo) }}" class="img-fluid"
+                                        alt="" width="100" height="100" class="mb-2 ml-3" id="preview-img">
                                 @else
-                                <img src="{{asset('images/userdefault.png')}}" alt="" width="100" height="100" class="mb-2 ml-3" id="preview-img">
+                                    <img src="{{ asset('images/userdefault.png') }}" class="img-fluid" alt=""
+                                        width="100" height="100" class="mb-2 ml-3" id="preview-img">
                                 @endif
-                                <input type="file" name="photo" id="profile" class="form-control-file @error('photo') is-invalid @enderror">
+                                <input type="file" name="photo" id="profile"
+                                    class="form-control-file @error('photo') is-invalid @enderror">
                                 @error('photo')
-                                <span class="text-danger text-bold">{{ $message }}</span>
+                                    <span class="text-danger text-bold">{{ $message }}</span>
                                 @enderror
                             </div>
 

@@ -7,11 +7,13 @@
                     <div class="card-header text-center">
                         <h3 class="mt-3">Profile</h3>
                         @if ($user->photo)
-                        <img src="{{ asset('storage/user-photos/' . $user->photo) }}" alt="" width="200" height="150">
-                    @else
-                        <img src="{{ asset('images/userdefault.png') }}" alt="" width="200" height="150">
-                    @endif
-                      
+                            <img src="{{ asset('storage/user-photos/' . $user->photo) }}" class="img-fluid" alt=""
+                                width="200" height="150">
+                        @else
+                            <img src="{{ asset('images/userdefault.png') }}" class="img-fluid" alt="" width="200"
+                                height="150">
+                        @endif
+
                     </div>
                     <div class="row">
                         <div class="col-md-12">
@@ -33,8 +35,9 @@
                                 </li>
                                 <li class="list-group-item py-4">
                                     <a href="{{ route('admin.edit', Auth::user()->first()->id) }}"
-                                        class="btn btn-outline-primary float-left"><i class="fa fa-pen mr-1"></i>Edit Profile</a>
-                                        <a href="{{ route('admin.users.index') }}"
+                                        class="btn btn-outline-primary float-left"><i class="fa fa-pen mr-1"></i>Edit
+                                        Profile</a>
+                                    <a href="{{ route('admin.users.index') }}"
                                         class="px-3 py-2 btn btn-outline-secondary btn-rounded btn-icon float-right">Cancel</a>
                                 </li>
                             </ul>

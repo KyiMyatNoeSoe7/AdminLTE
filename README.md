@@ -81,6 +81,9 @@ User can edit profile and can post posts. User part include `edit profile`, `cre
 ## Frontend
 
 The guest can view posts and post details.
+
+![Frontend Page](./public/images/frontend1.png)
+
 ## Top Page
 
 ![Top Page](./public/images/frontend.png)

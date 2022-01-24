@@ -8,11 +8,13 @@
                     <div class="card-header">
                         <h3 class="mt-3  text-center">Profile</h3>
                         @if ($user->photo)
-                            <img src="{{ asset('storage/user-photos/' . $user->photo) }}" alt="" width="200" height="150">
+                            <img src="{{ asset('storage/user-photos/' . $user->photo) }}" class="img-fluid" alt=""
+                                width="200" height="150">
                         @else
-                            <img src="{{ asset('images/userdefault.png') }}" alt="" width="200" height="150">
+                            <img src="{{ asset('images/userdefault.png') }}" class="img-fluid" alt="" width="200"
+                                height="150">
                         @endif
-                        
+
                     </div>
                     <div class="row">
                         <div class="col-md-12">
@@ -33,9 +35,10 @@
                                     <span class="text-primary">Address: </span>{{ $user->address }}
                                 </li>
                                 <li class="list-group-item py-4">
-                                    <a href="{{ route('user.edit', $user->id) }}" class="btn btn-outline-primary float-left"><i
-                                        class="fa fa-pen mr-1"></i>Edit Profile</a>
-                                        <a href="{{ route('index') }}"
+                                    <a href="{{ route('user.edit', $user->id) }}"
+                                        class="btn btn-outline-primary float-left"><i class="fa fa-pen mr-1"></i>Edit
+                                        Profile</a>
+                                    <a href="{{ route('index') }}"
                                         class="px-3 py-2 btn btn-outline-secondary btn-rounded btn-icon float-right">Cancel</a>
                                 </li>
                             </ul>

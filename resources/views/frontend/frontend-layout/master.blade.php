@@ -92,7 +92,7 @@
                                     @endif
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                        document.getElementById('logout-form').submit();">
+                                            document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
@@ -156,7 +156,7 @@
                 </div>
             </div>
             <hr>
-            <div class="footer-copyright text-center py-2  " style="color: #0BA5A9;">© 2021 Copyright:
+            <div class="footer-copyright text-center" style="color: #0BA5A9; padding-bottom: 15px;">© 2021 Copyright:
                 <a href="{{ url('/') }}" class="" style="color: #0BA5A9;">superadmin@gmail.com</a>
             </div>
         </footer>
